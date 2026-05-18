@@ -20,7 +20,7 @@ GitHub bilgisi gerektirmez. **Issues → New Issue** ile sanatçı, şarkı ve s
 3. **JSON İndir** ile güncel `data.json`'ı indirin
 4. Bu repodaki `data.json` dosyasını açın, sağ üstteki kalem ikonuyla düzenleyin
 5. İndirdiğiniz dosyanın içeriğiyle tamamen değiştirin
-6. **Pull Request** açın
+6. **Pull Request** [açın](https://github.com/kadircanersahin/turkish-rap-sample-archive/pulls)
 
 > Generator aracı mevcut arşiv verisini otomatik çeker; duplicate kontrolü ve format doğrulaması yapar.
 
