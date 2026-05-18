@@ -1,36 +1,59 @@
-# 🎵 Türkçe Rap Sample Arşivi
+# 💵 Türkçe Rap Sample Arşivi
 
-Bu proje, Türkçe rap müziğinde kullanılan sample'ların (örneklemelerin) ve orijinal kaynaklarının derlendiği, topluluk odaklı, açık kaynaklı bir arşivdir. 
+Türkçe rap müziğinde kullanılan sample'ların ve orijinal kaynaklarının derlendiği, topluluk odaklı açık kaynaklı arşiv. Tüm veriler [web arayüzünde](https://kce.wtf/turkish-rap-sample-archive/) dinamik olarak listelenmektedir.
 
-Arşivdeki tüm veriler dinamik olarak [Web sayfası](https://kce.wtf/turkish-rap-sample-archive/) üzerinde listelenmektedir.
+## 🤷🏻 Amaç
+
+Forum ve interaktif sözlüklerin boklu, düzensiz, güvensiz ve şımarık yapısından kurtulmak.
 
 ---
 
-## 🚀 Nasıl Katkıda Bulunursunuz?
+## ✨ Katkıda Bulunmak
 
-Bu arşivi birlikte büyütüyoruz! Eğer listede olmayan bir sample biliyorsanız, aşağıdaki iki yöntemden biriyle katkıda bulunabilirsiniz:
+### Yöntem A: Issues (Kolay)
+GitHub bilgisi gerektirmez. **Issues → New Issue** ile sanatçı, şarkı ve sample bilgilerini bildirin, author'un gönülsüzce eklemesini sağlayın.
 
-### Yöntem A: Kolay Yöntem (GitHub Bilgisi Gerektirmez)
-1. Yukarıdaki sekmelerden **Issues** (Sorunlar/İstekler) kısmına gelin.
-2. **New Issue** butonuna tıklayın.
-3. Başlığa `Yeni Sample Önerisi` yazıp, içeriğe bildiğiniz sample'ın detaylarını (Sanatçı, Şarkı, Sample Kaynağı, Varsa Linkler) yazarak gönderin. Biz sizin yerinize arşive ekleriz!
+### Yöntem B: Pull Request (Doğrudan)
 
-### Yöntem B: Doğrudan Katkı (Pull Request)
-Eğer GitHub kullanmayı biliyorsanız, veritabanına doğrudan ekleme yapabilirsiniz:
-1. `samples.json` dosyasını açın ve sağ üstteki **Kalem (Edit)** ikonuna tıklayın (Bu işlem projeyi otomatik olarak forklayacaktır).
-2. Dosyanın **en altındaki** köşeli parantezden `]` hemen önce bir virgül `,` koyarak yeni sample verinizi ekleyin.
-3. Değişiklikleri kaydedip bir **Pull Request (Çekme İsteği)** oluşturun.
+1. [Data Generator](https://kce.wtf/turkish-rap-sample-archive-data-generator/) aracını açın
+2. Formu doldurun — sağda gerçek zamanlı JSON önizlemesi görünür
+3. **JSON İndir** ile güncel `data.json`'ı indirin
+4. Bu repodaki `data.json` dosyasını açın, sağ üstteki kalem ikonuyla düzenleyin
+5. İndirdiğiniz dosyanın içeriğiyle tamamen değiştirin
+6. **Pull Request** açın
 
-⚠️ **ÖNEMLİ:** JSON formatının bozulmaması için ekleme yaparken aşağıdaki şablona kesinlikle sadık kalmalısınız. Virgüllere ve tırnak işaretlerine dikkat edin.
+> Generator aracı mevcut arşiv verisini otomatik çeker; duplicate kontrolü ve format doğrulaması yapar.
+
+---
+
+## 📐 JSON Yapısı 😎🤏😳🕶🤏
+
+Her kayıt tek bir sample ilişkisini temsil eder. Bir şarkıda birden fazla sample varsa her biri ayrı satır olarak girilir.
 
 ```json
-  // Örnek Şablon:
-  {
-    "artist": "Sagopa Kajmer",
-    "song": "İskeletler Diyarında Bir Et Parçası",
-    "sample_source": "George Winston - Colors Dance",
-    "type": "sample",
-    "category": "melody",
-    "tags": "Sagopa Kajmer, Bir Pesimistin Gözyaşları, BPG, Karanlık Damlalar, Disc 2, CD 2, 2003, George Winston, Colors Dance, piano",
-    "see_also": "Yunus Özyavuz, Dj Mic Check, Silahsız Kuvvet"
-  }
+{
+  "id": "sagopa-kajmer-iskeletler-george-winston-colors-dance",
+  "artist": "Sagopa Kajmer",
+  "song": "İskeletler Diyarında Bir Et Parçası",
+  "sample_artist": "George Winston",
+  "sample_track": "Colors Dance",
+  "type": "sample",
+  "category": "melody",
+  "tags": "Sagopa Kajmer, Bir Pesimistin Gözyaşları, BPG, 2003, piano",
+  "see_also": "Yunus Özyavuz, Dj Mic Check, Silahsız Kuvvet"
+}
+```
+
+| Alan | Zorunlu | Açıklama |
+|---|---|---|
+| `id` | ✓ | `artist-song-sample_artist-sample_track` slug formatında, benzersiz |
+| `artist` | ✓ | Sample kullanan sanatçı |
+| `song` | ✓ | Sample kullanan şarkı |
+| `sample_artist` | ✓ | Orijinal kaynak sanatçı |
+| `sample_track` | ✓ | Orijinal kaynak şarkı |
+| `type` | ✓ | `sample`, `interpolation`, `remix`, `cover` |
+| `category` | ✓ | `melody`, `drums`, `vocal`, `bass`, `fx`, `other` |
+| `tags` | — | Virgülle ayrılmış arama etiketleri |
+| `see_also` | — | İlgili isimler veya alternatif aramalar, virgülle ayrılmış |
+
+`tags` ve `see_also` array değil, **virgülle ayrılmış string** olmalıdır.
